@@ -1,5 +1,6 @@
-import tax from '../tax'
+import applyTax from '../tax'
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(tax(100)).toBe(108);
-});
+test('should calculate japanese tax.', () => {
+  expect(applyTax(100, 1.08)).toBe("¥108")
+  expect(applyTax(101, 1.08, false)).toBe("¥109")
+})
