@@ -1,0 +1,32 @@
+{
+  "name": "play-with-jest",
+  "version": "1.0.0",
+  "description": "Jest testing example",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/subuta/play-with-jest.git"
+  },
+  "keywords": [],
+  "author": "subuta <shunta.3110@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/subuta/play-with-jest/issues"
+  },
+  "homepage": "https://github.com/subuta/play-with-jest#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "esm": "^3.2.25",
+    "knex": "^0.17.6",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.4.5",
+    "jest": "^24.8.0",
+    "sinon": "^7.3.2"
+  }
+}
