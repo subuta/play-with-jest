@@ -5,10 +5,12 @@ import fakeDB from './fakeDB'
 
 let mockApplyTax
 
-describe('/api', () => {
+describe('/api with mock', () => {
   let client
 
   beforeEach(() => {
+    jest.resetModules()
+
     mockApplyTax = jest.fn((price) => price)
 
     jest.mock('../../utils/tax', () => {
