@@ -7,8 +7,6 @@ const router = new Router({
   prefix: '/api'
 })
 
-const TAX = 1.08
-
 // Define API
 // GET /api/items
 router.get('/items', async (ctx) => {
@@ -18,7 +16,7 @@ router.get('/items', async (ctx) => {
 
   ctx.body = _.map(items, (item) => ({
     ...item,
-    price: applyTax(item.price, TAX)
+    price: applyTax(item.price)
   }))
 })
 
@@ -39,7 +37,7 @@ router.get('/items/:id', async (ctx) => {
     return
   }
 
-  item.price = applyTax(item.price, TAX)
+  item.price = applyTax(item.price)
 
   ctx.body = item
 })
@@ -56,7 +54,7 @@ router.post('/items', async (ctx) => {
     .where({ id })
     .first()
 
-  item.price = applyTax(item.price, TAX)
+  item.price = applyTax(item.price)
 
   ctx.body = item
 })

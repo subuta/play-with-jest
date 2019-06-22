@@ -1,13 +1,21 @@
-import getTestDB from './testDB'
+import sinon from 'sinon'
 
+import getTestDB from './testDB'
 import getTestClient from './testClient'
 import fakeDB from './fakeDB'
 
 describe('/api', () => {
   let client
+  let clock
 
   beforeEach(() => {
     const api = require('../').default
+
+    clock = sinon.useFakeTimers({
+      // When 2019/9/30 23:59:59
+      now: new Date(2019, 8, 30, 23, 59, 59).getTime(),
+      toFake: ['Date']
+    })
 
     // Inject Test DB reference to koa context.
     const injectTestDB = async (ctx, next) => {
@@ -24,6 +32,7 @@ describe('/api', () => {
   })
 
   afterEach(async () => {
+    clock && clock.restore()
     // Rollback fakeDB changes.
     await fakeDB.restore()
     client.destroy()

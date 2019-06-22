@@ -11,7 +11,10 @@ describe('/api with mock', () => {
   beforeEach(() => {
     jest.resetModules()
 
-    mockApplyTax = jest.fn((price) => price)
+    mockApplyTax = jest.fn((price) => {
+      // console.log(price)
+      return price
+    })
 
     jest.mock('../../utils/tax', () => {
       return mockApplyTax
@@ -72,9 +75,9 @@ describe('/api with mock', () => {
     const calls = mockApplyTax.mock.calls
     expect(calls.length).toEqual(3)
 
-    expect(calls[0]).toEqual([100, 1.08])
-    expect(calls[1]).toEqual([200, 1.08])
-    expect(calls[2]).toEqual([150, 1.08])
+    expect(calls[0]).toEqual([100])
+    expect(calls[1]).toEqual([200])
+    expect(calls[2]).toEqual([150])
   })
 
   test('GET /api/items/1', async () => {
@@ -94,7 +97,7 @@ describe('/api with mock', () => {
     const calls = mockApplyTax.mock.calls
     expect(calls.length).toEqual(1)
 
-    expect(calls[0]).toEqual([100, 1.08])
+    expect(calls[0]).toEqual([100])
   })
 
   test('GET /api/items/100', async () => {
@@ -126,6 +129,6 @@ describe('/api with mock', () => {
     const calls = mockApplyTax.mock.calls
     expect(calls.length).toEqual(1)
 
-    expect(calls[0]).toEqual([300, 1.08])
+    expect(calls[0]).toEqual([300])
   })
 })
